@@ -9,15 +9,14 @@ import { CommonModule } from '@angular/common';
   template: `
     <div class="container">
       <div class="cart-header">
-        <h1 class="section-title">Your Shopping Cart</h1>
-        <p class="section-subtitle">Review and manage your items</p>
+        <h1 class="section-title">Tu carrito</h1>
+        <p class="section-subtitle">Revisa y administra los artículos</p>
       </div>
       
-      @if (cartItems.length > 0) {
+      <div *ngIf="cartItems.length > 0; else emptyCart">
         <div class="cart-content">
           <div class="cart-items">
-            @for (item of cartItems; track item.id) {
-              <div class="cart-item card">
+            <div *ngFor="let item of cartItems" class="cart-item card">
                 <div class="item-image">
                   <img [src]="item.image" [alt]="item.name">
                 </div>
@@ -25,7 +24,7 @@ import { CommonModule } from '@angular/common';
                 <div class="item-details">
                   <h3 class="item-name">{{ item.name }}</h3>
                   <p class="item-variant">{{ item.size }} | {{ item.color }}</p>
-                  <div class="item-price">${{ item.price }}</div>
+                  <div class="item-price">\${{ item.price }}</div>
                 </div>
                 
                 <div class="item-quantity">
@@ -37,7 +36,7 @@ import { CommonModule } from '@angular/common';
                 </div>
                 
                 <div class="item-total">
-                  ${{ (item.price * item.quantity).toFixed(2) }}
+                  \${{ (item.price * item.quantity).toFixed(2) }}
                 </div>
                 
                 <button 
@@ -51,44 +50,44 @@ import { CommonModule } from '@angular/common';
                   </svg>
                 </button>
               </div>
-            }
-          </div>
+            </div>
           
           <div class="cart-summary">
-            <h2 class="summary-title">Order Summary</h2>
+            <h2 class="summary-title">Resumen del pedido</h2>
             
             <div class="summary-row">
-              <span>Subtotal</span>
-              <span>${{ subtotal.toFixed(2) }}</span>
+                <span>Subtotal</span>
+                <span>\${{ subtotal.toFixed(2) }}</span>
+              </div>
+            
+            <div class="summary-row">
+              <span>Envío</span>
+              <span>{{ shippingCost === 0 ? 'GRATIS' : '$' + shippingCost.toFixed(2) }}</span>
             </div>
             
             <div class="summary-row">
-              <span>Shipping</span>
-              <span>{{ shippingCost === 0 ? 'FREE' : '$' + shippingCost.toFixed(2) }}</span>
-            </div>
-            
-            <div class="summary-row">
-              <span>Tax</span>
-              <span>${{ tax.toFixed(2) }}</span>
+              <span>Impuestos</span>
+              <span>\${{ tax.toFixed(2) }}</span>
             </div>
             
             <div class="summary-divider"></div>
             
             <div class="summary-row total">
               <span>Total</span>
-              <span class="total-amount">${{ total.toFixed(2) }}</span>
+              <span class="total-amount">\${{ total.toFixed(2) }}</span>
             </div>
             
             <button class="btn btn-primary checkout-btn" routerLink="/checkout">
-              Proceed to Checkout
+              Ir al pago
             </button>
             
             <button class="btn btn-outline continue-btn" routerLink="/shop">
-              Continue Shopping
+              Seguir comprando
             </button>
           </div>
         </div>
-      } @else {
+      </div>
+      <ng-template #emptyCart>
         <div class="empty-cart">
           <div class="empty-cart-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -97,11 +96,11 @@ import { CommonModule } from '@angular/common';
               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
             </svg>
           </div>
-          <h2>Your cart is empty</h2>
-          <p>Looks like you haven't added anything to your cart yet</p>
-          <a routerLink="/shop" class="btn btn-primary">Start Shopping</a>
+          <h2>Tu carrito está vacío</h2>
+          <p>Parece que no has agregado nada todavía</p>
+          <a routerLink="/shop" class="btn btn-primary">Comenzar a comprar</a>
         </div>
-      }
+      </ng-template>
     </div>
   `,
   styles: [`
@@ -316,30 +315,30 @@ export class CartComponent implements OnInit {
   cartItems = [
     {
       id: 1,
-      name: 'Classic White Shirt',
+      name: 'Camisa Blanca Clásica',
       image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+1',
       price: 89.99,
       quantity: 1,
       size: 'M',
-      color: 'White'
+      color: 'Blanco'
     },
     {
       id: 2,
-      name: 'Slim Fit Jeans',
+      name: 'Jeans Ajustados',
       image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+2',
       price: 79.99,
       quantity: 2,
       size: 'L',
-      color: 'Blue'
+      color: 'Azul'
     },
     {
       id: 3,
-      name: 'Cashmere Sweater',
+      name: 'Suéter de Cachemira',
       image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+3',
       price: 149.99,
       quantity: 1,
       size: 'M',
-      color: 'Gray'
+      color: 'Gris'
     }
   ];
 

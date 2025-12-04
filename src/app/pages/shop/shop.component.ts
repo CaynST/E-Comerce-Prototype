@@ -12,27 +12,27 @@ import { FormsModule } from '@angular/forms';
     <section class="section">
       <div class="container">
         <div class="shop-header">
-          <h1 class="section-title">Our Collection</h1>
-          <p class="section-subtitle">Discover our curated selection of premium clothing</p>
+          <h1 class="section-title">Nuestra Colección</h1>
+          <p class="section-subtitle">Descubre nuestra selección curada de ropa premium</p>
         </div>
         
         <div class="shop-filters">
           <div class="filter-group">
-            <label>Category</label>
+            <label>Categoría</label>
             <select class="filter-select" [(ngModel)]="selectedCategory" (change)="applyFilters()">
-              <option value="">All Categories</option>
-              <option value="shirts">Shirts</option>
-              <option value="pants">Pants</option>
-              <option value="dresses">Dresses</option>
-              <option value="jackets">Jackets</option>
-              <option value="accessories">Accessories</option>
+              <option value="">Todas las Categorías</option>
+              <option value="shirts">Camisas</option>
+              <option value="pants">Pantalones</option>
+              <option value="dresses">Vestidos</option>
+              <option value="jackets">Chaquetas</option>
+              <option value="accessories">Accesorios</option>
             </select>
           </div>
           
           <div class="filter-group">
-            <label>Price Range</label>
+            <label>Rango de Precios</label>
             <select class="filter-select" [(ngModel)]="selectedPriceRange" (change)="applyFilters()">
-              <option value="">All Prices</option>
+              <option value="">Todos los Precios</option>
               <option value="0-50">$0 - $50</option>
               <option value="50-100">$50 - $100</option>
               <option value="100-200">$100 - $200</option>
@@ -41,12 +41,12 @@ import { FormsModule } from '@angular/forms';
           </div>
           
           <div class="filter-group">
-            <label>Sort By</label>
+            <label>Ordenar Por</label>
             <select class="filter-select" [(ngModel)]="sortOption" (change)="applyFilters()">
-              <option value="featured">Featured</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="newest">Newest Arrivals</option>
+              <option value="featured">Destacado</option>
+              <option value="price-low">Precio: Menor a Mayor</option>
+              <option value="price-high">Precio: Mayor a Menor</option>
+              <option value="newest">Nuevas Llegadas</option>
             </select>
           </div>
         </div>
@@ -62,9 +62,9 @@ import { FormsModule } from '@angular/forms';
         
         @if (filteredProducts.length === 0) {
           <div class="no-products">
-            <h3>No products found</h3>
-            <p>Try adjusting your filters to see more results.</p>
-            <button class="btn btn-outline" (click)="resetFilters()">Reset Filters</button>
+            <h3>No se encontraron productos</h3>
+            <p>Intenta ajustar tus filtros para ver más resultados.</p>
+            <button class="btn btn-outline" (click)="resetFilters()">Restablecer Filtros</button>
           </div>
         }
       </div>
@@ -140,27 +140,27 @@ export class ShopComponent implements OnInit {
   products = [
     {
       id: 1,
-      name: 'Classic White Shirt',
-      description: 'Timeless design with premium cotton fabric',
+      name: 'Camisa Blanca Clásica',
+      description: 'Diseño atemporal con tela de algodón premium',
       price: 89.99,
       compareAtPrice: 119.99,
       image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+1',
       category: 'shirts',
-      badge: 'Best Seller'
+      badge: 'Más Vendido'
     },
     {
       id: 2,
-      name: 'Slim Fit Jeans',
-      description: 'Perfect fit with stretch denim',
+      name: 'Jeans Ajustados',
+      description: 'Ajuste perfecto con mezclilla elástica',
       price: 79.99,
       image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+2',
       category: 'pants',
-      badge: 'New'
+      badge: 'Nuevo'
     },
     {
       id: 3,
-      name: 'Cashmere Sweater',
-      description: 'Luxurious feel with premium materials',
+      name: 'Suéter de Cachemira',
+      description: 'Sensación lujosa con materiales premium',
       price: 149.99,
       compareAtPrice: 199.99,
       image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+3',
@@ -168,24 +168,24 @@ export class ShopComponent implements OnInit {
     },
     {
       id: 4,
-      name: 'Leather Jacket',
-      description: 'Genuine leather with modern cut',
+      name: 'Chaqueta de Cuero',
+      description: 'Cuero genuino con corte moderno',
       price: 249.99,
       image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+4',
       category: 'jackets'
     },
     {
       id: 5,
-      name: 'Silk Blouse',
-      description: 'Elegant silk with delicate details',
+      name: 'Blusa de Seda Elegante',
+      description: 'Seda elegante con detalles delicados',
       price: 129.99,
       image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+5',
       category: 'dresses'
     },
     {
       id: 6,
-      name: 'Wool Coat',
-      description: 'Warm and stylish winter coat',
+      name: 'Abrigo de Lana',
+      description: 'Abrigo de invierno cálido y elegante',
       price: 199.99,
       compareAtPrice: 249.99,
       image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+6',
@@ -193,16 +193,16 @@ export class ShopComponent implements OnInit {
     },
     {
       id: 7,
-      name: 'Cotton T-Shirt',
-      description: 'Comfortable everyday essential',
+      name: 'Camiseta de Algodón',
+      description: 'Esencial cómodo para el día a día',
       price: 29.99,
       image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+7',
       category: 'shirts'
     },
     {
       id: 8,
-      name: 'Designer Handbag',
-      description: 'Premium leather accessory',
+      name: 'Bolso de Diseñador',
+      description: 'Accesorio de cuero premium',
       price: 179.99,
       image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+8',
       category: 'accessories'

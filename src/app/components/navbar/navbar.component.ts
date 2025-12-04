@@ -13,9 +13,9 @@ import { CommonModule } from '@angular/common';
           <a routerLink="/home" class="logo">ELEGANT</a>
           
           <div class="nav-menu">
-            <a routerLink="/home" routerLinkActive="active" class="nav-link">Home</a>
-            <a routerLink="/shop" routerLinkActive="active" class="nav-link">Shop</a>
-            <a routerLink="/account" routerLinkActive="active" class="nav-link">Account</a>
+            <a routerLink="/home" routerLinkActive="active" class="nav-link">Inicio</a>
+            <a routerLink="/shop" routerLinkActive="active" class="nav-link">Tienda</a>
+            <a routerLink="/account" routerLinkActive="active" class="nav-link">Mi cuenta</a>
           </div>
           
           <div class="nav-actions">
@@ -26,18 +26,16 @@ import { CommonModule } from '@angular/common';
               </svg>
             </button>
             
-            <button class="nav-icon" (click)="toggleCart()">
+            <button class="nav-icon" routerLink="/cart">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="9" cy="21" r="1"></circle>
                 <circle cx="20" cy="21" r="1"></circle>
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
-              @if (cartCount > 0) {
-                <span class="cart-count">{{ cartCount }}</span>
-              }
+              <span *ngIf="cartCount > 0" class="cart-count">{{ cartCount }}</span>
             </button>
             
-            <button class="nav-icon">
+            <button class="nav-icon" routerLink="/account">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
@@ -48,27 +46,25 @@ import { CommonModule } from '@angular/common';
       </div>
     </nav>
     
-    @if (showSearch) {
-      <div class="search-overlay">
-        <div class="container">
-          <div class="search-container">
-            <input 
-              type="text" 
-              placeholder="Search for products..." 
-              class="search-input"
-              #searchInput
-              (keyup.enter)="performSearch(searchInput.value)"
-            >
-            <button (click)="performSearch(searchInput.value)" class="search-btn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-            </button>
-          </div>
+    <div *ngIf="showSearch" class="search-overlay">
+      <div class="container">
+        <div class="search-container">
+          <input 
+            type="text" 
+            placeholder="Buscar productos..." 
+            class="search-input"
+            #searchInput
+            (keyup.enter)="performSearch(searchInput.value)"
+          >
+          <button (click)="performSearch(searchInput.value)" class="search-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
         </div>
       </div>
-    }
+    </div>
   `,
   styles: [`
     .navbar {

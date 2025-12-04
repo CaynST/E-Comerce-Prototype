@@ -12,9 +12,9 @@ import { CommonModule } from '@angular/common';
       <div class="container">
         <div class="hero-content">
           <div class="hero-text">
-            <h1 class="hero-title">Elevate Your Style</h1>
-            <p class="hero-subtitle">Discover our curated collection of timeless pieces designed for the modern individual.</p>
-            <a routerLink="/shop" class="btn btn-primary hero-btn">Shop Collection</a>
+            <h1 class="hero-title">Eleva tu estilo</h1>
+            <p class="hero-subtitle">Descubre nuestra colección curada de piezas atemporales pensadas para la persona moderna.</p>
+            <a routerLink="/shop" class="btn btn-primary hero-btn">Comprar colección</a>
           </div>
           <div class="hero-image">
             <div class="hero-placeholder">
@@ -27,28 +27,28 @@ import { CommonModule } from '@angular/common';
     
     <section class="featured-products section">
       <div class="container">
-        <h2 class="section-title">Featured Products</h2>
-        <p class="section-subtitle">Handpicked selection of our finest pieces</p>
+        <h2 class="section-title">Productos destacados</h2>
+        <p class="section-subtitle">Selección cuidada de nuestras mejores piezas</p>
         
         <div class="product-grid">
-          @for (product of featuredProducts; track product.id) {
+          <ng-container *ngFor="let product of featuredProducts">
             <app-product-card 
               [product]="product" 
               (addToCartEvent)="addToCart($event)"
             ></app-product-card>
-          }
+          </ng-container>
         </div>
         
         <div class="text-center" style="margin-top: 40px;">
-          <a routerLink="/shop" class="btn btn-outline">View All Products</a>
+          <a routerLink="/shop" class="btn btn-outline">Ver todos los productos</a>
         </div>
       </div>
     </section>
     
     <section class="collections section">
       <div class="container">
-        <h2 class="section-title">Collections</h2>
-        <p class="section-subtitle">Explore our seasonal collections</p>
+        <h2 class="section-title">Colecciones</h2>
+        <p class="section-subtitle">Explora nuestras colecciones de temporada</p>
         
         <div class="collections-grid">
           <div class="collection-card card">
@@ -57,7 +57,7 @@ import { CommonModule } from '@angular/common';
             </div>
             <div class="collection-content">
               <h3>Spring Essentials</h3>
-              <a routerLink="/shop" class="btn btn-outline">Explore</a>
+              <a routerLink="/shop" class="btn btn-outline">Explorar</a>
             </div>
           </div>
           
@@ -67,7 +67,7 @@ import { CommonModule } from '@angular/common';
             </div>
             <div class="collection-content">
               <h3>Summer Vibes</h3>
-              <a routerLink="/shop" class="btn btn-outline">Explore</a>
+              <a routerLink="/shop" class="btn btn-outline">Explorar</a>
             </div>
           </div>
           
@@ -77,7 +77,7 @@ import { CommonModule } from '@angular/common';
             </div>
             <div class="collection-content">
               <h3>Autumn Classics</h3>
-              <a routerLink="/shop" class="btn btn-outline">Explore</a>
+              <a routerLink="/shop" class="btn btn-outline">Explorar</a>
             </div>
           </div>
         </div>
@@ -88,9 +88,9 @@ import { CommonModule } from '@angular/common';
       <div class="container">
         <div class="about-content">
           <div class="about-text">
-            <h2 class="section-title">Our Story</h2>
-            <p>Elegant Boutique was founded with a simple mission: to provide high-quality, timeless clothing that makes every individual feel confident and stylish. We believe in sustainable fashion practices and ethical production.</p>
-            <p>Each piece in our collection is carefully curated to ensure it meets our standards of quality, comfort, and style. We work with artisans who share our vision of creating beautiful, long-lasting garments.</p>
+            <h2 class="section-title">Nuestra historia</h2>
+              <p>Elegant Boutique nació con una misión sencilla: ofrecer ropa de alta calidad y diseño atemporal que haga sentir a cada persona segura y con estilo. Creemos en prácticas sostenibles y producción ética.</p>
+              <p>Cada prenda de nuestra colección está cuidadosamente seleccionada para asegurar que cumpla con nuestros estándares de calidad, comodidad y estilo. Trabajamos con artesanos que comparten nuestra visión de crear prendas bellas y duraderas.</p>
           </div>
           <div class="about-image">
             <div class="about-placeholder"></div>
@@ -254,36 +254,36 @@ export class HomeComponent implements OnInit {
   featuredProducts = [
     {
       id: 1,
-      name: 'Classic White Shirt',
-      description: 'Timeless design with premium cotton fabric',
-      price: 89.99,
-      compareAtPrice: 119.99,
-      image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+1',
-      badge: 'Best Seller'
+      name: 'Camisa Blanca Clásica',
+      description: 'Diseño atemporal en algodón premium',
+      price: 1799.00,
+      compareAtPrice: 2399.00,
+      image: 'https://placehold.co/300x300/f5f5f5/333333?text=Producto+1',
+      badge: 'Más vendido'
     },
     {
       id: 2,
-      name: 'Slim Fit Jeans',
-      description: 'Perfect fit with stretch denim',
-      price: 79.99,
-      image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+2',
-      badge: 'New'
+      name: 'Jeans Slim Fit',
+      description: 'Ajuste perfecto con denim stretch',
+      price: 1399.00,
+      image: 'https://placehold.co/300x300/f5f5f5/333333?text=Producto+2',
+      badge: 'Nuevo'
     },
     {
       id: 3,
-      name: 'Cashmere Sweater',
-      description: 'Luxurious feel with premium materials',
-      price: 149.99,
-      compareAtPrice: 199.99,
-      image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+3',
-      badge: 'Limited'
+      name: 'Suéter de Cashmere',
+      description: 'Sensación lujosa con materiales premium',
+      price: 3499.00,
+      compareAtPrice: 4499.00,
+      image: 'https://placehold.co/300x300/f5f5f5/333333?text=Producto+3',
+      badge: 'Edición limitada'
     },
     {
       id: 4,
-      name: 'Leather Jacket',
-      description: 'Genuine leather with modern cut',
-      price: 249.99,
-      image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+4'
+      name: 'Chamarra de Piel',
+      description: 'Piel auténtica con corte moderno',
+      price: 6999.00,
+      image: 'https://placehold.co/300x300/f5f5f5/333333?text=Producto+4'
     }
   ];
 

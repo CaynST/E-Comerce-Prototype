@@ -14,69 +14,61 @@ import { CommonModule } from '@angular/common';
             <img [src]="product.image" [alt]="product.name" class="image">
           </div>
           <div class="thumbnails">
-            @for (img of product.images; track $index) {
-              <div 
-                class="thumbnail" 
-                [class.active]="selectedImage === $index"
-                (click)="selectImage($index)"
-              >
-                <img [src]="img" alt="Thumbnail {{ $index + 1 }}">
-              </div>
-            }
+            <div *ngFor="let img of product.images; let i = index" 
+              class="thumbnail" 
+              [class.active]="selectedImage === i"
+              (click)="selectImage(i)"
+            >
+              <img [src]="img" alt="Thumbnail {{ i + 1 }}">
+            </div>
           </div>
         </div>
         
         <div class="product-info">
           <div class="product-breadcrumb">
-            <a routerLink="/shop">Shop</a> > 
+            <a routerLink="/shop">Tienda</a> > 
             <a routerLink="/shop" [queryParams]="{category: product.category}">{{ product.category }}</a> > 
             <span>{{ product.name }}</span>
           </div>
           
           <h1 class="product-title">{{ product.name }}</h1>
           <div class="product-price">
-            <span class="current-price">${{ product.price }}</span>
-            @if (product.compareAtPrice) {
-              <span class="original-price">${{ product.compareAtPrice }}</span>
-            }
+            <span class="current-price">MX\${{ product.price }}</span>
+            <span *ngIf="product.compareAtPrice" class="original-price">MX\${{ product.compareAtPrice }}</span>
           </div>
           
           <p class="product-description">{{ product.description }}</p>
           
           <div class="product-variants">
             <div class="variant-group">
-              <label>Size</label>
+              <label>Talla</label>
               <div class="size-selector">
-                @for (size of availableSizes; track size) {
-                  <button 
-                    class="size-option" 
-                    [class.selected]="selectedSize === size"
-                    (click)="selectSize(size)"
-                  >
-                    {{ size }}
-                  </button>
-                }
+                <button *ngFor="let size of availableSizes"
+                  class="size-option"
+                  [class.selected]="selectedSize === size"
+                  (click)="selectSize(size)"
+                >
+                  {{ size }}
+                </button>
               </div>
             </div>
             
             <div class="variant-group">
               <label>Color</label>
               <div class="color-selector">
-                @for (color of availableColors; track color.name) {
-                  <button 
-                    class="color-option" 
-                    [class.selected]="selectedColor.name === color.name"
-                    [style.background-color]="color.value"
-                    (click)="selectColor(color)"
-                    [attr.title]="color.name"
-                  ></button>
-                }
+                <button *ngFor="let color of availableColors"
+                  class="color-option"
+                  [class.selected]="selectedColor.name === color.name"
+                  [style.backgroundColor]="color.value"
+                  (click)="selectColor(color)"
+                  [attr.title]="color.name"
+                ></button>
               </div>
             </div>
           </div>
           
           <div class="quantity-selector">
-            <label>Quantity</label>
+            <label>Cantidad</label>
             <div class="quantity-controls">
               <button (click)="decreaseQuantity()" class="quantity-btn">-</button>
               <span class="quantity-value">{{ quantity }}</span>
@@ -91,23 +83,23 @@ import { CommonModule } from '@angular/common';
                 <circle cx="20" cy="21" r="1"></circle>
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
-              Add to Cart
+              Añadir al carrito
             </button>
             <button class="btn btn-outline wishlist-btn">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
               </svg>
-              Add to Wishlist
+              Añadir a favoritos
             </button>
           </div>
           
           <div class="product-details">
-            <h3>Product Details</h3>
+            <h3>Detalles del producto</h3>
             <ul>
               <li>Material: {{ product.material }}</li>
-              <li>Care: {{ product.care }}</li>
-              <li>Fit: {{ product.fit }}</li>
-              <li>Origin: {{ product.origin }}</li>
+              <li>Cuidado: {{ product.care }}</li>
+              <li>Corte: {{ product.fit }}</li>
+              <li>Origen: {{ product.origin }}</li>
             </ul>
           </div>
         </div>
@@ -378,21 +370,21 @@ export class ProductComponent implements OnInit {
     // In a real app, we would get the product ID from the route and fetch the product
     this.product = {
       id: 1,
-      name: 'Classic White Shirt',
-      description: 'Timeless design with premium cotton fabric. Perfect for any occasion, this shirt combines comfort and style with its soft texture and tailored fit.',
-      price: 89.99,
-      compareAtPrice: 119.99,
-      image: 'https://placehold.co/600x600/f5f5f5/333333?text=Product+Detail',
+      name: 'Camisa Blanca Clásica',
+      description: 'Diseño atemporal en algodón premium. Ideal para cualquier ocasión, combina comodidad y estilo con una textura suave y corte entallado.',
+      price: 1799.00,
+      compareAtPrice: 2399.00,
+      image: 'https://placehold.co/600x600/f5f5f5/333333?text=Detalle+Producto',
       images: [
-        'https://placehold.co/600x600/f5f5f5/333333?text=Product+Detail',
-        'https://placehold.co/600x600/e0e0e0/333333?text=Product+Detail+2',
-        'https://placehold.co/600x600/d0d0d0/333333?text=Product+Detail+3'
+        'https://placehold.co/600x600/f5f5f5/333333?text=Detalle+Producto',
+        'https://placehold.co/600x600/e0e0e0/333333?text=Detalle+Producto+2',
+        'https://placehold.co/600x600/d0d0d0/333333?text=Detalle+Producto+3'
       ],
       category: 'shirts',
-      material: '100% Cotton',
-      care: 'Machine wash cold, tumble dry low',
-      fit: 'Regular fit',
-      origin: 'Made in Portugal'
+      material: '100% algodón',
+      care: 'Lavar a máquina en frío, secar a baja temperatura',
+      fit: 'Corte regular',
+      origin: 'Hecho en México'
     };
     
     this.selectedColor = this.availableColors[0];

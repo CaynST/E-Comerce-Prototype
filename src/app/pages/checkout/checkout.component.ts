@@ -10,14 +10,14 @@ import { FormsModule } from '@angular/forms';
   template: `
     <div class="container">
       <div class="checkout-header">
-        <h1 class="section-title">Checkout</h1>
-        <p class="section-subtitle">Complete your purchase</p>
+        <h1 class="section-title">Pago</h1>
+        <p class="section-subtitle">Completa tu compra</p>
       </div>
       
       <div class="checkout-content">
         <div class="checkout-form">
           <div class="form-section">
-            <h2>Contact Information</h2>
+            <h2>Información de contacto</h2>
             <div class="form-row">
               <div class="form-group">
                 <label for="email">Email</label>
@@ -27,35 +27,38 @@ import { FormsModule } from '@angular/forms';
           </div>
           
           <div class="form-section">
-            <h2>Shipping Address</h2>
+            <h2>Dirección de envío</h2>
             <div class="form-row">
               <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" class="form-control" placeholder="John">
+                <label for="firstName">Nombre</label>
+                <input type="text" id="firstName" class="form-control" placeholder="Juan">
               </div>
               <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" class="form-control" placeholder="Doe">
+                <label for="lastName">Apellido</label>
+                <input type="text" id="lastName" class="form-control" placeholder="Pérez">
               </div>
             </div>
-            
+
             <div class="form-group">
-              <label for="address">Address</label>
-              <input type="text" id="address" class="form-control" placeholder="123 Main St">
+              <label for="address">Calle y número</label>
+              <input type="text" id="address" class="form-control" placeholder="Av. Insurgentes Sur 123">
             </div>
-            
+
             <div class="form-row">
               <div class="form-group">
-                <label for="city">City</label>
-                <input type="text" id="city" class="form-control" placeholder="New York">
+                <label for="city">Ciudad</label>
+                <input type="text" id="city" class="form-control" placeholder="Ciudad de México">
               </div>
               <div class="form-group">
-                <label for="state">State</label>
-                <input type="text" id="state" class="form-control" placeholder="NY">
+                <label for="state">Estado / Alcaldía</label>
+                <input type="text" id="state" class="form-control" placeholder="CDMX">
               </div>
+            </div>
+
+            <div class="form-row">
               <div class="form-group">
-                <label for="zip">ZIP Code</label>
-                <input type="text" id="zip" class="form-control" placeholder="10001">
+                <label for="zip">Código Postal</label>
+                <input type="text" id="zip" class="form-control" placeholder="01210">
               </div>
             </div>
           </div>
@@ -71,7 +74,7 @@ import { FormsModule } from '@angular/forms';
                   value="card" 
                   [(ngModel)]="selectedPaymentMethod"
                 >
-                <label for="card">Credit Card</label>
+                <label for="card">Tarjeta de crédito</label>
               </div>
               
               <div class="payment-option" [class.selected]="selectedPaymentMethod === 'paypal'">
@@ -97,25 +100,23 @@ import { FormsModule } from '@angular/forms';
               </div>
             </div>
             
-            @if (selectedPaymentMethod === 'card') {
-              <div class="payment-details">
+            <div *ngIf="selectedPaymentMethod === 'card'" class="payment-details">
+              <div class="form-group">
+                <label for="cardNumber">Número de tarjeta</label>
+                <input type="text" id="cardNumber" class="form-control" placeholder="1234 5678 9012 3456">
+              </div>
+
+              <div class="form-row">
                 <div class="form-group">
-                  <label for="cardNumber">Card Number</label>
-                  <input type="text" id="cardNumber" class="form-control" placeholder="1234 5678 9012 3456">
+                  <label for="expiry">Fecha de expiración</label>
+                  <input type="text" id="expiry" class="form-control" placeholder="MM/AA">
                 </div>
-                
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="expiry">Expiry Date</label>
-                    <input type="text" id="expiry" class="form-control" placeholder="MM/YY">
-                  </div>
-                  <div class="form-group">
-                    <label for="cvv">CVV</label>
-                    <input type="text" id="cvv" class="form-control" placeholder="123">
-                  </div>
+                <div class="form-group">
+                  <label for="cvv">CVV</label>
+                  <input type="text" id="cvv" class="form-control" placeholder="123">
                 </div>
               </div>
-            }
+            </div>
           </div>
           
           <button class="btn btn-primary place-order-btn" (click)="placeOrder()">
@@ -124,42 +125,40 @@ import { FormsModule } from '@angular/forms';
         </div>
         
         <div class="checkout-summary">
-          <h2 class="summary-title">Order Summary</h2>
-          
+          <h2 class="summary-title">Resumen del pedido</h2>
+
           <div class="order-items">
-            @for (item of cartItems; track item.id) {
-              <div class="order-item">
-                <div class="item-thumb">
-                  <img [src]="item.image" [alt]="item.name">
-                </div>
-                <div class="item-info">
-                  <h4>{{ item.name }}</h4>
-                  <p>{{ item.quantity }} x ${{ item.price }} | {{ item.size }} | {{ item.color }}</p>
-                </div>
-                <div class="item-total">
-                  ${{ (item.price * item.quantity).toFixed(2) }}
-                </div>
+            <div *ngFor="let item of cartItems" class="order-item">
+              <div class="item-thumb">
+                <img [src]="item.image" [alt]="item.name">
               </div>
-            }
+              <div class="item-info">
+                <h4>{{ item.name }}</h4>
+                <p>{{ item.quantity }} x \${{ item.price }} • {{ item.size }} • {{ item.color }}</p>
+              </div>
+              <div class="item-total">
+                \${{ (item.price * item.quantity).toFixed(2) }}
+              </div>
+            </div>
           </div>
-          
+
           <div class="summary-breakdown">
             <div class="summary-row">
               <span>Subtotal</span>
-              <span>${{ subtotal.toFixed(2) }}</span>
+              <span>\${{ subtotal.toFixed(2) }}</span>
             </div>
             <div class="summary-row">
-              <span>Shipping</span>
-              <span>{{ shippingCost === 0 ? 'FREE' : '$' + shippingCost.toFixed(2) }}</span>
+              <span>Envío</span>
+              <span>{{ shippingCost === 0 ? 'GRATIS' : '$' + shippingCost.toFixed(2) }}</span>
             </div>
             <div class="summary-row">
-              <span>Tax</span>
-              <span>${{ tax.toFixed(2) }}</span>
+              <span>Impuestos</span>
+              <span>\${{ tax.toFixed(2) }}</span>
             </div>
             <div class="summary-divider"></div>
             <div class="summary-row total">
               <span>Total</span>
-              <span class="total-amount">${{ total.toFixed(2) }}</span>
+              <span class="total-amount">\${{ total.toFixed(2) }}</span>
             </div>
           </div>
         </div>
@@ -364,7 +363,7 @@ export class CheckoutComponent implements OnInit {
   cartItems = [
     {
       id: 1,
-      name: 'Classic White Shirt',
+      name: 'Camisa Blanca Clásica',
       image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+1',
       price: 89.99,
       quantity: 1,
@@ -373,7 +372,7 @@ export class CheckoutComponent implements OnInit {
     },
     {
       id: 2,
-      name: 'Slim Fit Jeans',
+      name: 'Jeans Slim Fit',
       image: 'https://placehold.co/300x300/f5f5f5/333333?text=Product+2',
       price: 79.99,
       quantity: 2,

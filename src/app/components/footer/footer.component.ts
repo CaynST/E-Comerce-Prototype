@@ -11,31 +11,31 @@ import { RouterLink } from '@angular/router';
         <div class="footer-content">
           <div class="footer-section">
             <h3 class="footer-title">ELEGANT</h3>
-            <p class="footer-text">Modern clothing for the contemporary individual. Quality, style, and sustainability in every piece.</p>
+            <p class="footer-text">Ropa moderna para el individuo contemporáneo. Calidad, estilo y sostenibilidad en cada prenda.</p>
           </div>
           
           <div class="footer-section">
-            <h4 class="footer-subtitle">Shop</h4>
+            <h4 class="footer-subtitle">Tienda</h4>
             <ul class="footer-links">
-              <li><a routerLink="/shop">All Products</a></li>
-              <li><a routerLink="/shop">New Arrivals</a></li>
-              <li><a routerLink="/shop">Best Sellers</a></li>
-              <li><a routerLink="/shop">Sale</a></li>
+              <li><a routerLink="/shop">Todos los productos</a></li>
+              <li><a routerLink="/shop">Nuevas llegadas</a></li>
+              <li><a routerLink="/shop">Más vendidos</a></li>
+              <li><a routerLink="/shop">Oferta</a></li>
             </ul>
           </div>
           
           <div class="footer-section">
-            <h4 class="footer-subtitle">Customer Service</h4>
+            <h4 class="footer-subtitle">Servicio al Cliente </h4>
             <ul class="footer-links">
-              <li><a routerLink="/account">Contact Us</a></li>
-              <li><a routerLink="/account">Shipping Policy</a></li>
-              <li><a routerLink="/account">Returns & Exchanges</a></li>
-              <li><a routerLink="/account">FAQ</a></li>
+              <li><a routerLink="/account">Contáctanos</a></li>
+              <li><a routerLink="/account">Política de Envío</a></li>
+              <li><a routerLink="/account">Devoluciones y Cambios</a></li>
+              <li><a routerLink="/account">Preguntas Frecuentes</a></li>
             </ul>
           </div>
           
           <div class="footer-section">
-            <h4 class="footer-subtitle">Connect</h4>
+            <h4 class="footer-subtitle">Conectar</h4>
             <div class="social-links">
               <a href="#" aria-label="Instagram">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

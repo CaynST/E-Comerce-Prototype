@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
           [alt]="product.name"
           class="product-image"
           (load)="onImageLoad()"
-          (error)="onImageError()"
+          (error)="onImageError($event)"
         >
         <div class="product-badge" *ngIf="product.badge">
           {{ product.badge }}
@@ -29,7 +29,7 @@ import { CommonModule } from '@angular/common';
             <circle cx="20" cy="21" r="1"></circle>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
-          Add to Cart
+          Añadir al carrito
         </button>
       </div>
       <div class="product-info">
@@ -38,10 +38,8 @@ import { CommonModule } from '@angular/common';
         </h3>
         <p class="product-description">{{ product.description }}</p>
         <div class="product-price">
-          <span class="current-price">${{ product.price }}</span>
-          @if (product.compareAtPrice) {
-            <span class="original-price">${{ product.compareAtPrice }}</span>
-          }
+          <span class="current-price">MX\${{ product.price }}</span>
+          <span *ngIf="product.compareAtPrice" class="original-price">MX\${{ product.compareAtPrice }}</span>
         </div>
       </div>
     </div>
@@ -177,10 +175,12 @@ export class ProductCardComponent {
   onImageLoad() {
     // Image loaded successfully
   }
-  
-  onImageError() {
+
+  onImageError(event: Event) {
     // Set a default image if the product image fails to load
-    const img = event.target as HTMLImageElement;
-    img.src = 'https://placehold.co/300x300/e0e0e0/999999?text=No+Image';
+    const img = event?.target as HTMLImageElement;
+    if (img) {
+      img.src = 'https://placehold.co/300x300/e0e0e0/999999?text=No+Image';
+    }
   }
 }
